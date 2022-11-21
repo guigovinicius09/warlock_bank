@@ -16,7 +16,7 @@ O lugar certo para fazer seu gold render :)
 
 """
 
-saldo = 0.52
+saldo = 1500
 numero_saque = 0
 limite_por_saque = 500
 extrato = ""
@@ -26,14 +26,15 @@ while True:
     opcao = input(menu)
 
     if opcao == "1":
-        print(f"######## CONSULTA SALDO ########\n\n    -> Saldo atual de R$ {saldo:.2f}\n")
+        print(
+            f"######## CONSULTA SALDO ########\n\n    -> Saldo atual de R$ {saldo:.2f}\n")
 
     elif opcao == "8":
         deposito = float(input("Informe o valor que está depositando: "))
 
         if deposito > 0:
             saldo += deposito
-            extrato += f"\n   -> Depósito de R$ {deposito:.2f}\n"
+            extrato += f"\n>=> Depósito de R$ {deposito:.2f}\n"
         else:
             print("!!! Não é possível depositar essa quantia !!!")
 
@@ -42,7 +43,7 @@ while True:
 
         excedeu_saldo = saque > saldo
         limite_valor_saque = saque > limite_por_saque
-        limite = numero_saque >= LIMITE_SAQUES
+        limite_de_saque = numero_saque >= LIMITE_SAQUES
 
         if excedeu_saldo:
             print("!!! Você não possui saldo suficiente para esta operação!!! ")
@@ -50,22 +51,22 @@ while True:
         elif limite_valor_saque:
             print("!!! Valor ultrapassa o limite de saque!!! ")
 
-        elif numero_saque:
+        elif limite_de_saque:
             print("!!! Você atingiu o número máximo de saques diários!!! ")
 
         elif saque > 0:
             saldo -= saque
-            extrato += f" -> Saque ATM R$ -{saque:.2f}\n"
-            numero_saque =+ 1
+            extrato += f"   >-> Saque ATM R$ -{saque:.2f}\n"
+            numero_saque += 1
 
         else:
             print("Opção inválida, tente novamente!")
 
     elif opcao == "3":
-        print(f"########### EXTRATO ###########\n{extrato}")
+        print(f"########### EXTRATO ###########\n")
         print("Não foram realizadas movimentações." if not extrato else extrato)
         print(f"Saldo: R$ {saldo:.2f}")
-        print(f"================================\n{extrato}")
+        print(f"<================================>\n")
 
     elif opcao == "0":
         print("### Warlock Bank agradece! ###")
